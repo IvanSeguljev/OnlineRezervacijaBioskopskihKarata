@@ -1,34 +1,10 @@
-﻿.main-body {
-    
-    
+﻿.seat-vacant {
+    width: 50px;
+    height: 50px;
+    display: inline-block;
+    border-radius: 2px;
+    background-image: url('/Content/seat.jpeg');
 }
-body {
-    background-color: #1a1a2e !important;
-    color: #D3D3D3 !important;
-}
-.navbar {
-    background-color: #0f3460 !important;
-    border-bottom: 3px solid #e94560 !important;
-}
-a {
-    color: #e94560 !important;
-    font-size: 14pt;
-}
-.highlight {
-    background-color: #e94560 !important;
-    
-}
-.highlight2 {
-    background-color: #16213e !important;
-    
-}
-.row{
-    padding-top:40px;
-    padding-bottom:100px;
-}
-p{
-    font-size:14pt;
-}
-b {
-    font-size: 14pt;
-}
+    .seat-vacant:hover {
+        box-shadow: inset 0 0 0 1000px rgba(0,0,0,.4);
+    }

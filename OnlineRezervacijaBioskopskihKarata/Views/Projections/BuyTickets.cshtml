@@ -1,0 +1,42 @@
+﻿@model OnlineRezervacijaBioskopskihKarata.Models.Projection
+@{
+    ViewBag.Title = "BuyTicket";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>BuyTickets</h2>
+
+<b>Select seats you want to reserve</b>
+<input value="@Model.Id" type="hidden" />
+<hr />
+<center>
+    <div style="width:902px; height:502px;  border:1px solid black; text-align:left;">
+        <div  style="width:500px; height:30px;background-color:dodgerblue; margin-left:201px; text-align:center;">Movie cloth</div>
+        <div style="height:70px;width:100%;"></div>
+        <div id="seatContainer" style=" padding:0px; width:900px;height:400px;background-color:whitesmoke;"></div>
+
+    </div>
+</center>
+@section Scripts{
+    <script>
+        var seatcontainer = document.getElementById("seatContainer");
+        var startmarker = document.getElementById("startMarker");
+        var pom="";
+        $(document).ready(function () {
+            //Creating grid of seats
+            for (row = 1; row <= 8; row++) {
+                pom += '<div style="width:900px;height:50px;">';
+                for (col = 1; col <= 18; col++) {
+                    if(col!=6 && col!=13)
+                        pom += '<div id="r' + row + 'c' + col + '" style="" class="seat-vacant"></div>';
+                    else
+                        pom += '<div style="width:50px; height:50px; display:inline-block; background-image:url(\'/Content/tepih.jpg\');"></div>';
+                }
+                pom += '</div>'
+                seatcontainer.innerHTML += pom;
+                pom = "";
+            }
+        });
+    </script>
+    }
+

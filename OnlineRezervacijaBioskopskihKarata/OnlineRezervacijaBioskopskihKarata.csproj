@@ -202,7 +202,9 @@
     <Content Include="Content\movieWallpapers\mov1.jpg" />
     <Content Include="Content\movieWallpapers\mov2.jpg" />
     <Content Include="Content\movieWallpapers\mov3.jpg" />
+    <Content Include="Content\seat.jpeg" />
     <Content Include="Content\Style.css" />
+    <Content Include="Content\tepih.jpg" />
     <Content Include="Content\webticketLogo.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -261,6 +263,7 @@
     <Content Include="Views\Projections\Edit.cshtml" />
     <Content Include="Views\Projections\Index.cshtml" />
     <Content Include="Views\Projections\AllProjections.cshtml" />
+    <Content Include="Views\Projections\BuyTickets.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
