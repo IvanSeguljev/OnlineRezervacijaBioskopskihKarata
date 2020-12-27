@@ -1,0 +1,33 @@
+﻿@model IEnumerable<OnlineRezervacijaBioskopskihKarata.Models.Projection>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Incoming projections</h2>
+
+<br />
+@foreach (var item in Model)
+{
+    <div class="card mb-4">
+        <div class="row no-gutters">
+            <div class="col-md-4">
+                <img src="~/Content/movieWallpapers/mov3.jpg" class="card-img" />
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h3 class="card-title">@Html.DisplayFor(modelItem => item.Name)</h3>
+                    <hr />
+                    <p class="card-text"> <b>Projection date: </b>@Html.DisplayFor(modelItem => item.Date)</p>
+                    <p class="card-text">Projection starts at @Html.DisplayFor(modelItem => item.StartTime) and ands at @Html.DisplayFor(modelItem => item.EndTime)</p>
+                    <p class="card-text"><b>Ticket price:</b> @Html.DisplayFor(modelItem => item.TicketCost)din.</p>
+                    <button class="btn btn-primary" onclick="document.location.href='/projections/BuyTickets/@Html.DisplayFor(modelItem => item.Id)'">Buy tickets</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+   
+
+

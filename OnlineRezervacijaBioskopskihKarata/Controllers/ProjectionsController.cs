@@ -20,6 +20,11 @@ namespace OnlineRezervacijaBioskopskihKarata.Controllers
             return View(db.Projections.ToList());
         }
 
+        public ActionResult AllProjections()
+        {
+            return View(db.Projections.ToList());
+        }
+
         // GET: Projections/Details/5
         public ActionResult Details(int? id)
         {

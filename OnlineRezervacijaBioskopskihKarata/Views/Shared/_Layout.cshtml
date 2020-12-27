@@ -24,7 +24,10 @@
                         @Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link active" })
                     </li>
                     <li class="nav-item">
-                        @Html.ActionLink("Projections", "Index", "Projections", new { area = "" }, new { @class = "nav-link" })
+                        @Html.ActionLink("Projections", "AllProjections", "Projections", new { area = "" }, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Manage projections", "Index", "Projections", new { area = "" }, new { @class = "nav-link" })
                     </li>
 
 
@@ -44,7 +47,7 @@
 
     @Scripts.Render("~/bundles/jquery")
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
-   
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
     @RenderSection("scripts", required: false)
 </body>
 </html>

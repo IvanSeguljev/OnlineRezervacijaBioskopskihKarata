@@ -260,6 +260,7 @@
     <Content Include="Views\Projections\Details.cshtml" />
     <Content Include="Views\Projections\Edit.cshtml" />
     <Content Include="Views\Projections\Index.cshtml" />
+    <Content Include="Views\Projections\AllProjections.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
