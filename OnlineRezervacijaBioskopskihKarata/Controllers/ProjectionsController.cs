@@ -36,12 +36,29 @@ namespace OnlineRezervacijaBioskopskihKarata.Controllers
             {
                 return HttpNotFound();
             }
-            return View(projection);
+            return View(db.Projections.Include(x => x.Reservations).FirstOrDefault(x=>x.Id==id));
         }
         [HttpPost]
         public ActionResult BuyTickets(int id, string selectedSeats)
         {
             Projection projection = db.Projections.Find(id);
+            List<string> selected = selectedSeats.Split(',').ToList();
+            string orderId = Guid.NewGuid().ToString();
+            
+            foreach (string s in selected)
+            {
+                int row = Convert.ToInt32( s.Split('r')[1].Split('c')[0]);
+                int col = Convert.ToInt32( s.Split('r')[1].Split('c')[1]);
+                string guid = Guid.NewGuid().ToString();
+                db.Reservations.Add(new Reservation() { 
+                    Column=col,
+                    Row=row,
+                    OrderId=orderId,
+                    ProjectionId=id,
+                    TicketGuid=guid
+                });
+            }
+            db.SaveChanges();
             return RedirectToAction("index");
         }
 

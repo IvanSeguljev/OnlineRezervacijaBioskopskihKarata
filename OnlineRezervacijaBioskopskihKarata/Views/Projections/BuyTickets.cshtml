@@ -5,7 +5,6 @@
 }
 
 <h2>BuyTickets</h2>
-
 <b>Select seats you want to reserve</b>
 <input value="@Model.Id" type="hidden" />
 <hr />
@@ -39,20 +38,24 @@
 </div>
 @section Scripts{
     <script>
-        
+
         var seatcontainer = document.getElementById("seatContainer");
         var startmarker = document.getElementById("startMarker");
         var ticketPrice = @Model.TicketCost;
         var selected = [];
+        var reserved = [@Html.Raw(@Model.formatReservedSeats())];
         var pom = "";
-
+        console.log(reserved);
+        
         //On ready function
         $(document).ready(function () {
             //Creating grid of seats
             for (row = 1; row <= 8; row++) {
                 pom += '<div style="width:900px;height:50px;">';
                 for (col = 1; col <= 18; col++) {
-                    if(col!=6 && col!=13)
+                    if (reserved.indexOf('r' + row + 'c' + col) !== -1)
+                        pom += '<div style="width:50px; height:50px; display:inline-block; background-image:url(\'/Content/seat-taken.jpg\');"></div>';                    
+                    else if(col!=6 && col!=13)
                         pom += '<div id="r' + row + 'c' + col + '" clicked="false"  onclick="chooseSeat(r' + row + 'c' + col + ')" class="seat-vacant"></div>';
                     else
                         pom += '<div style="width:50px; height:50px; display:inline-block; background-image:url(\'/Content/tepih.jpg\');"></div>';
@@ -61,7 +64,7 @@
                 seatcontainer.innerHTML += pom;
                 pom = "";
             }
-            
+           
         });
 
         function chooseSeat(seat) {
@@ -75,7 +78,7 @@
 
                 //prints selected seats for user
                 printSelectedList();
-                
+
             } else if (seat.getAttribute("clicked") == "true") {
                 //set icon to vacant
                 seat.setAttribute("clicked", "false");
@@ -87,7 +90,7 @@
                 //prints selected seats for user
                 printSelectedList();
             }
-            
+
         }
 
         function printSelectedList() {
@@ -111,7 +114,7 @@
                 alert("You must select at least one seat!");
             }
         }
-        
+
     </script>
     }
 

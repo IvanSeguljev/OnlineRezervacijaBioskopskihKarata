@@ -21,6 +21,7 @@ namespace OnlineRezervacijaBioskopskihKarata.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public DbSet<Projection> Projections { get; set; }
+        public DbSet<Reservation> Reservations { get; set; }
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {

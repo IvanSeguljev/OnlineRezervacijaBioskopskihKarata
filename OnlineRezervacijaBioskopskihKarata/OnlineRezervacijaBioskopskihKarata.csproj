@@ -186,11 +186,20 @@
     <Compile Include="Migrations\202012262159389_adding_ticket_cost_to_projection.Designer.cs">
       <DependentUpon>202012262159389_adding_ticket_cost_to_projection.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202012282133149_adding_reservations_model.cs" />
+    <Compile Include="Migrations\202012282133149_adding_reservations_model.Designer.cs">
+      <DependentUpon>202012282133149_adding_reservations_model.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202012282146073_add_row_and_col_to_reservation.cs" />
+    <Compile Include="Migrations\202012282146073_add_row_and_col_to_reservation.Designer.cs">
+      <DependentUpon>202012282146073_add_row_and_col_to_reservation.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Projection.cs" />
+    <Compile Include="Models\Reservation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -203,6 +212,7 @@
     <Content Include="Content\movieWallpapers\mov2.jpg" />
     <Content Include="Content\movieWallpapers\mov3.jpg" />
     <Content Include="Content\seat-clicked.jpg" />
+    <Content Include="Content\seat-taken.jpg" />
     <Content Include="Content\seat.jpeg" />
     <Content Include="Content\Style.css" />
     <Content Include="Content\tepih.jpg" />
@@ -291,6 +301,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202012262159389_adding_ticket_cost_to_projection.resx">
       <DependentUpon>202012262159389_adding_ticket_cost_to_projection.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012282133149_adding_reservations_model.resx">
+      <DependentUpon>202012282133149_adding_reservations_model.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012282146073_add_row_and_col_to_reservation.resx">
+      <DependentUpon>202012282146073_add_row_and_col_to_reservation.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
