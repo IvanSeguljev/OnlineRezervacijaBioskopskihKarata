@@ -5,6 +5,11 @@
     border-radius: 2px;
     background-image: url('/Content/seat.jpeg');
 }
-    .seat-vacant:hover {
-        box-shadow: inset 0 0 0 1000px rgba(0,0,0,.4);
-    }
+.seat-vacant:hover {
+    box-shadow: inset 0 0 0 1000px rgba(0,0,0,.4);
+}
+.clicked {
+   
+    background-image: url('/Content/seat-clicked.jpg') !important;
+}
+

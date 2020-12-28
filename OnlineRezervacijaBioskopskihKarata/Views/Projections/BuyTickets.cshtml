@@ -9,26 +9,51 @@
 <b>Select seats you want to reserve</b>
 <input value="@Model.Id" type="hidden" />
 <hr />
-<center>
-    <div style="width:902px; height:502px;  border:1px solid black; text-align:left;">
-        <div  style="width:500px; height:30px;background-color:dodgerblue; margin-left:201px; text-align:center;">Movie cloth</div>
+<center >
+    
+    <div  style="width:902px; height:502px;  border:1px solid black; text-align:left;">
+        <div style="width:500px; height:30px;background-color:dodgerblue; margin-left:201px; text-align:center;">Movie cloth</div>
         <div style="height:70px;width:100%;"></div>
-        <div id="seatContainer" style=" padding:0px; width:900px;height:400px;background-color:whitesmoke;"></div>
+        <div id="seatContainer"style=" padding:0px; width:900px;height:400px;background-color:whitesmoke;"></div>
+        
 
     </div>
 </center>
+<br />
+<div class="row justify-content-center">
+    <div class="col-md-4">
+        <h3>Selected seats:</h3>
+        <ul id="selected">
+
+        </ul>
+    </div>
+    <div class="col-md-4" >
+        <form id="form" action="/Projections/buyTickets" method="post" >
+            <p>Ticket price is: @Model.TicketCost din.</p>
+            <p id="totalPrice"></p>
+            <input type="hidden" value="" id="inputSelected" name="selectedSeats" />
+            <button type="button" onclick="checkAndSubmit()" class="btn btn-success btn-lg">Reserve seats</button>
+            <input name="id" value="@Model.Id" type="hidden" />
+        </form>
+    </div>
+</div>
 @section Scripts{
     <script>
+        
         var seatcontainer = document.getElementById("seatContainer");
         var startmarker = document.getElementById("startMarker");
-        var pom="";
+        var ticketPrice = @Model.TicketCost;
+        var selected = [];
+        var pom = "";
+
+        //On ready function
         $(document).ready(function () {
             //Creating grid of seats
             for (row = 1; row <= 8; row++) {
                 pom += '<div style="width:900px;height:50px;">';
                 for (col = 1; col <= 18; col++) {
                     if(col!=6 && col!=13)
-                        pom += '<div id="r' + row + 'c' + col + '" style="" class="seat-vacant"></div>';
+                        pom += '<div id="r' + row + 'c' + col + '" clicked="false"  onclick="chooseSeat(r' + row + 'c' + col + ')" class="seat-vacant"></div>';
                     else
                         pom += '<div style="width:50px; height:50px; display:inline-block; background-image:url(\'/Content/tepih.jpg\');"></div>';
                 }
@@ -36,7 +61,57 @@
                 seatcontainer.innerHTML += pom;
                 pom = "";
             }
+            
         });
+
+        function chooseSeat(seat) {
+            if (seat.getAttribute("clicked") == "false") {
+                //set icon to selected
+                seat.setAttribute("clicked", "true");
+                seat.classList.add("clicked");
+
+                //add index to selected item array
+                selected.push(seat.getAttribute("id"));
+
+                //prints selected seats for user
+                printSelectedList();
+                
+            } else if (seat.getAttribute("clicked") == "true") {
+                //set icon to vacant
+                seat.setAttribute("clicked", "false");
+                seat.classList.remove("clicked");
+
+                //remove item from selected array
+                selected.splice(selected.indexOf(seat.getAttribute("id")), 1);
+
+                //prints selected seats for user
+                printSelectedList();
+            }
+            
+        }
+
+        function printSelectedList() {
+            var list = document.getElementById("selected");
+            list.innerHTML = "";
+            var pom;
+            for (i = 0; i < selected.length; i++) {
+                pom = selected[i].split('r')[1].split('c');
+                list.innerHTML += "<li>Seat " + pom[1] + ", row " + pom[0] + "</li>";
+
+            }
+            document.getElementById("totalPrice").innerHTML = "Total price for selected seats: " + (ticketPrice * selected.length) + " din.";
+        }
+
+        function checkAndSubmit() {
+            if (selected.length != 0) {
+                document.getElementById("inputSelected").setAttribute("value", selected);
+                document.getElementById("form").submit();
+            }
+            else {
+                alert("You must select at least one seat!");
+            }
+        }
+        
     </script>
     }
 

@@ -38,6 +38,12 @@ namespace OnlineRezervacijaBioskopskihKarata.Controllers
             }
             return View(projection);
         }
+        [HttpPost]
+        public ActionResult BuyTickets(int id, string selectedSeats)
+        {
+            Projection projection = db.Projections.Find(id);
+            return RedirectToAction("index");
+        }
 
         // GET: Projections/Details/5
         public ActionResult Details(int? id)
