@@ -59,7 +59,25 @@ namespace OnlineRezervacijaBioskopskihKarata.Controllers
                 });
             }
             db.SaveChanges();
-            return RedirectToAction("index");
+            return RedirectToAction("ViewReservations",new {transactionId = orderId });
+        }
+
+        public ActionResult FindTickets()
+        {
+            return View();
+        }
+
+        public ActionResult ViewReservations(string transactionId)
+        {
+            ViewTicketsViewModel model = new ViewTicketsViewModel();
+            model.Reservations = db.Reservations.Where(x => x.OrderId == transactionId).ToList();
+            model.TransactionId = transactionId;
+            model.Projection = db.Reservations.FirstOrDefault(x => x.OrderId == transactionId)?.Projection;
+            if (model.Projection != null)
+            {
+                return View(model);
+            }
+            return HttpNotFound();
         }
 
         // GET: Projections/Details/5

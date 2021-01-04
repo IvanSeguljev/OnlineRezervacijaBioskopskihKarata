@@ -1,0 +1,33 @@
+﻿@model OnlineRezervacijaBioskopskihKarata.Models.ViewTicketsViewModel
+@{
+    ViewBag.Title = "My tickets";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Reservations made in transaction : @Model.TransactionId</h2>
+    <b>Take a picture of or print transaction number and tickets!</b>
+<br />
+<br />
+
+@foreach(var res in Model.Reservations)
+{
+
+    
+    <div class="card bg-light mb-3" style="width: 900px">
+        <div class="card-header" style="font-weight:300; font-size:12pt;">@res.TicketGuid</div>
+        <div class="card-body">
+            <h5 class="card-title" style="font-weight:500; font-size:16pt;">@Model.Projection.Name</h5>
+            <hr />
+            <p class="card-text" style="font-weight:400; font-size:14pt;">
+                Projection date: @Model.Projection.Date<br />
+                Projection start: @Model.Projection.StartTime   Projection end: @Model.Projection.EndTime<br /><br />
+
+                seat @res.Column row @res.Row
+
+            </p>
+        </div>
+    </div>
+
+}
+
+    <button class="btn btn-primary" onclick="document.location.href='/'">Back to front page</button>

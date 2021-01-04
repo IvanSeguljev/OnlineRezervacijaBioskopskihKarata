@@ -1,0 +1,14 @@
+﻿
+@{
+    ViewBag.Title = "FindTickets";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>FindTickets</h2>
+
+<b>find tickets by transaction number</b>
+
+<form action="/projections/ViewReservations" method="get">
+    <input name="transactionId" type="text" class="form-control input-lg" placeholder="transaction number"/><br />
+    <button type="submit" class="btn btn-primary">Find tickets</button>
+</form>
