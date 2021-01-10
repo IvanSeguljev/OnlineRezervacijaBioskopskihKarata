@@ -7,9 +7,9 @@
     <link href="~/Content/Style.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     @RenderSection("styles", required: false)
-    
+
 </head>
-<body>
+<body ng-app="myApp" ng-controller="myCtrl">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
             <a class="navbar-brand" href="/"><img src="~/Content/webticketLogo.png" /></a>
@@ -32,6 +32,11 @@
 
 
                 </ul>
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item nav-link" ng-click="chooseLanguage('serbian')">Srpski</li>
+                    <li></li>
+                    <li class="nav-item nav-link" ng-click="chooseLanguage('english')">English</li>
+                </ul>
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
@@ -45,11 +50,50 @@
         </footer>
     </div>
 
-    @Scripts.Render("~/bundles/jquery")
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular-route.min.js"></script>
 
-    @RenderSection("scripts", required: false)
 </body>
+
 </html>
+@Scripts.Render("~/bundles/jquery")
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-cookies/1.8.2/angular-cookies.min.js" integrity="sha512-5MlJcQrhy663S1tAEEQGHzoqqdsCIoFYA2ZLajvSeZl4uVxbBvive9hqpiIqHl3CEQfe7WlI/S1lbjsdoEBnRA==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-resource/1.8.2/angular-resource.min.js" integrity="sha512-heHqDjSgQ/iDnrNQqj9WFFYIS9nKYnWwb3VndZOvW1riVCWN9gsr98JEptFqmBl8Ru+3ubuGcHCYe2RJnA2PnA==" crossorigin="anonymous"></script>
+
+<script>
+    var app = angular.module('myApp', ['ngCookies','ngResource']);    
+    var lang = 'english';
+    //Translation service
+    app.service('translationService', function ($resource) {
+        this.getTranslation = function ($scope, language) {
+            var languageFilePath = '/Content/Locales/locale-' + language + '.json';
+            $resource(languageFilePath).get(function (data) {
+                $scope.translation = data;
+            });
+        };
+    });
+
+    app.controller('myCtrl', ['$scope','$resource', '$cookies', 'translationService', function ($scope,$resource, $cookies, translationService) {
+        //if no language cookie exists, make it
+        if ($cookies.get('lang') == undefined) 
+            $cookies.put("lang", "english", ["/"]);
+        //initial lang setup
+        lang = $cookies.get('lang');
+
+        translationService.getTranslation($scope, lang);
+
+        //!!!!!FUNCTIONS!!!!!
+        $scope.btnReserve = function () {
+            document.location.href = "/Projections/AllProjections";
+        }
+        $scope.chooseLanguage =  function ( language) {
+            $cookies.put("lang", language, ["/"]);
+            lang = language;
+            translationService.getTranslation($scope, lang);
+        }
+        
+    }]);
+   
+</script>
+
+@RenderSection("scripts", required: false)
