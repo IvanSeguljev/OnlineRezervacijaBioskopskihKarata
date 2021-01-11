@@ -21,21 +21,29 @@
                 <ul class="navbar-nav">
 
                     <li class="nav-item">
-                        @Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link active" })
+                        @Html.ActionLink("{{translation.navbar_home}}", "Index", "Home", new { area = "" }, new { @class = "nav-link active" })
                     </li>
                     <li class="nav-item">
-                        @Html.ActionLink("Projections", "AllProjections", "Projections", new { area = "" }, new { @class = "nav-link" })
+                        @Html.ActionLink("{{translation.navbar_projections}}", "AllProjections", "Projections", new { area = "" }, new { @class = "nav-link" })
                     </li>
                     <li class="nav-item">
-                        @Html.ActionLink("Manage projections", "Index", "Projections", new { area = "" }, new { @class = "nav-link" })
+                        @Html.ActionLink("{{translation.find_tickets}}", "FindTickets", "Projections", new { area = "" }, new { @class = "nav-link" })
                     </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("{{translation.navbar_manage_projections}}", "Index", "Projections", new { area = "" }, new { @class = "nav-link" })
+                    </li>
+
 
 
                 </ul>
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                    <li class="nav-item nav-link" ng-click="chooseLanguage('serbian')">Srpski</li>
+                    <li class="nav-item nav-link" ng-click="chooseLanguage('serbian')">
+                        <img class="lang-img" style="border:1px solid black; border-radius:5px;" src="~/Content/srbFlag.jpg" />
+                    </li>
                     <li></li>
-                    <li class="nav-item nav-link" ng-click="chooseLanguage('english')">English</li>
+                    <li class="nav-item nav-link" ng-click="chooseLanguage('english')">
+                        <img class="lang-img" style="border:1px solid black; border-radius:5px;" src="~/Content/engFlag.jpg" />
+                    </li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

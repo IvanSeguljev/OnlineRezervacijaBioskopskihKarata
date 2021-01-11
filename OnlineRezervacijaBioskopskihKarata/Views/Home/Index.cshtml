@@ -4,18 +4,18 @@
 <div class="row justify-content-md-center" style="background-image:url('/Content/movieWallpapers/mov1.jpg'); padding-top:200px; padding-bottom:300px; background-position:center; background-repeat:no-repeat; background-size:cover;">
     <div class=" col-md-10 " style="background-color:rgba(0,0,0,1); padding-top:100px; padding-bottom:100px; border-radius:10px; color:white;">
         <center><h1>{{translation.welcome_header}}</h1></center>
-        <center><p>Welcome to cinema! here, you can reserve seats for your favourite movie projection with just few clicks!</p></center>
+        <center><p>{{translation.welcome_subtext}}</p></center>
     </div>
 </div>
 <div class="row">
     <div class="col-md-3"></div>
     <div class="col-md-6">
         <div style="background-color:lightpink; position:relative; text-align:center; bottom:100px; border:2px solid white; border-radius:5px; padding:15px;">
-            <h4>Reserve tickets now!</h4>
+            <h4>{{translation.reserve_tickets_now}}</h4>
             <hr />
 
-            <p>Make sure to grab tickets in time! By using our <b>ticket reservation system</b></p>
-            <button ng-click="btnReserve()" type="button" class="btn btn-primary">Reserve tickets</button>
+            <p>{{translation.make_sure_to_grab_tickets}}</p>
+            <button ng-click="btnReserve()" type="button" class="btn btn-primary">{{translation.button_reserve_tickets}}</button>
         </div>
     </div>
 </div>

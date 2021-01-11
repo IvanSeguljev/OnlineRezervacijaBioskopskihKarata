@@ -4,14 +4,14 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>BuyTickets</h2>
-<b>Select seats you want to reserve</b>
+<h2>{{translation.buy_tickets}}</h2>
+<b>{{translation.select_seats_you_want}}</b>
 <input value="@Model.Id" type="hidden" />
 <hr />
 <center >
     
     <div  style="width:902px; height:502px;  border:1px solid black; text-align:left;">
-        <div style="width:500px; height:30px;background-color:dodgerblue; margin-left:201px; text-align:center;">Movie cloth</div>
+        <div style="width:500px; height:30px;background-color:dodgerblue; margin-left:201px; text-align:center;">{{translation.movie_cloth}}</div>
         <div style="height:70px;width:100%;"></div>
         <div id="seatContainer"style=" padding:0px; width:900px;height:400px;background-color:whitesmoke;"></div>
         
@@ -21,17 +21,17 @@
 <br />
 <div class="row justify-content-center">
     <div class="col-md-4">
-        <h3>Selected seats:</h3>
+        <h3>{{translation.selected_seats}}:</h3>
         <ul id="selected">
 
         </ul>
     </div>
     <div class="col-md-4" >
         <form id="form" action="/Projections/buyTickets" method="post" >
-            <p>Ticket price is: @Model.TicketCost din.</p>
-            <p id="totalPrice"></p>
+            <p>{{translation.ticket_price_is}}: @Model.TicketCost din.</p>
+            <p>{{translation.total_price}}: <b id="totalPrice">0</b> din.</p>
             <input type="hidden" value="" id="inputSelected" name="selectedSeats" />
-            <button type="button" onclick="checkAndSubmit()" class="btn btn-success btn-lg">Reserve seats</button>
+            <button type="button" onclick="checkAndSubmit()" class="btn btn-success btn-lg">{{translation.button_reserve_tickets}}</button>
             <input name="id" value="@Model.Id" type="hidden" />
         </form>
     </div>
@@ -102,7 +102,7 @@
                 list.innerHTML += "<li>Seat " + pom[1] + ", row " + pom[0] + "</li>";
 
             }
-            document.getElementById("totalPrice").innerHTML = "Total price for selected seats: " + (ticketPrice * selected.length) + " din.";
+            document.getElementById("totalPrice").innerHTML =  (ticketPrice * selected.length) ;
         }
 
         function checkAndSubmit() {

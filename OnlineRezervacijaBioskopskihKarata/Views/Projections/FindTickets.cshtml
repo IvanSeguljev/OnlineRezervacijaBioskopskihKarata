@@ -4,11 +4,13 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>FindTickets</h2>
+<h2>{{translation.find_tickets}}</h2>
 
-<b>find tickets by transaction number</b>
+<h5>{{translation.find_tickets_by_transaction_number}}</h5>
+<hr />
 
 <form action="/projections/ViewReservations" method="get">
-    <input name="transactionId" type="text" class="form-control input-lg" placeholder="transaction number"/><br />
-    <button type="submit" class="btn btn-primary">Find tickets</button>
+    {{translation.transaction_number}}
+    <input name="transactionId" type="text" class="form-control input-lg" placeholder="{{translation.transaction_number}}" /><br />
+    <button type="submit" class="btn btn-primary">{{translation.find_tickets}}</button>
 </form>

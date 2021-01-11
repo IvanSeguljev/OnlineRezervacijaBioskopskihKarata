@@ -5,61 +5,62 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Delete</h2>
+<h2>{{translation.delete_projection_header}}</h2>
 
-<h3>Are you sure you want to delete this?</h3>
+<h5>{{translation.are_you_sure_delete}}</h5>
 <div>
-    <h4>Projection</h4>
+
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
+            {{translation.projection_name}}
+    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
+    <dd>
+        @Html.DisplayFor(model => model.Name)
+    </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.StartTime)
-        </dt>
+    <dt>
+        {{translation.start_time}}
+    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.StartTime)
-        </dd>
+    <dd>
+        @Html.DisplayFor(model => model.StartTime)
+    </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.EndTime)
-        </dt>
+    <dt>
+        {{translation.end_time}}
+    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.EndTime)
-        </dd>
+    <dd>
+        @Html.DisplayFor(model => model.EndTime)
+    </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Date)
-        </dt>
+    <dt>
+        {{translation.projection_date}}
+    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Date)
-        </dd>
+    <dd>
+        @Html.DisplayFor(model => model.Date)
+    </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.TicketCost)
-        </dt>
+    <dt>
+        {{translation.ticket_price}}
+    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.TicketCost)
-        </dd>
+    <dd>
+        @Html.DisplayFor(model => model.TicketCost)
+    </dd>
 
     </dl>
 
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            <input type="submit" value="{{translation.delete_projection}}" class="btn btn-primary" /> |
+            @Html.ActionLink("{{translation.back_to_projections_list}}", "Index")
         </div>
     }
-</div>
+    </div>

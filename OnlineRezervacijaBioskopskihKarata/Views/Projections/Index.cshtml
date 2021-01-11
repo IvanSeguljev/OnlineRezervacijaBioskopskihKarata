@@ -5,30 +5,30 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>{{translation.manage_projections}}</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+
 <table class="table" id="myTable">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Name)
+                {{translation.projection_name}}
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.StartTime)
+                {{translation.start_time}}
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.EndTime)
+                {{translation.end_time}}
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Date)
+                {{translation.projection_date}}
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.TicketCost)
+                {{translation.ticket_price}}
             </th>
-            <th></th>
+            <th>
+                {{translation.actions}}
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -51,20 +51,27 @@
                     @Html.DisplayFor(modelItem => item.TicketCost)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                    @Html.ActionLink("{{translation.edit}}", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("{{translation.details}}", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("{{translation.delete}}", "Delete", new { id = item.Id })
                 </td>
             </tr>
         }
     </tbody>
 
 </table>
+<br />
+<p>
+    @Html.ActionLink("{{translation.add_new_projection}}", "Create")
+</p>
 @section scripts{
     <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js" type="text/javascript"></script>
     <script>
         $(document).ready(function () {
-            $('#myTable').DataTable();
+            $('#myTable').DataTable({
+                "paging": false,
+                "info": false
+            });
         });
     </script>
 }

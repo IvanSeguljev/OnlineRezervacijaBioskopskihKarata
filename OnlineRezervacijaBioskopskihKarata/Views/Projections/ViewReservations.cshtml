@@ -4,8 +4,8 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Reservations made in transaction : @Model.TransactionId</h2>
-    <b>Take a picture of or print transaction number and tickets!</b>
+<h2>{{translation.reservations_made_in_transaction}}: @Model.TransactionId</h2>
+<b>{{translation.take_picture_or_print}}</b>
 <br />
 <br />
 
@@ -19,10 +19,10 @@
             <h5 class="card-title" style="font-weight:500; font-size:16pt;">@Model.Projection.Name</h5>
             <hr />
             <p class="card-text" style="font-weight:400; font-size:14pt;">
-                Projection date: @Model.Projection.Date<br />
-                Projection start: @Model.Projection.StartTime   Projection end: @Model.Projection.EndTime<br /><br />
+                {{translation.projection_date}}: @Model.Projection.Date<br />
+                {{translation.projection_starts_at}}: @Model.Projection.StartTime   {{translation.and_ends_at}}: @Model.Projection.EndTime<br /><br />
 
-                seat @res.Column row @res.Row
+                {{translation.seat}} @res.Column {{translation.row}} @res.Row
 
             </p>
         </div>
@@ -30,4 +30,4 @@
 
 }
 
-    <button class="btn btn-primary" onclick="document.location.href='/'">Back to front page</button>
+<button class="btn btn-primary" onclick="document.location.href='/'">{{translation.back_to_index}}</button>
