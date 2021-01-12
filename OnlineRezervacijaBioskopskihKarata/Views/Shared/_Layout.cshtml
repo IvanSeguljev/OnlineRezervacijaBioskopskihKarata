@@ -67,23 +67,25 @@
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-cookies/1.8.2/angular-cookies.min.js" integrity="sha512-5MlJcQrhy663S1tAEEQGHzoqqdsCIoFYA2ZLajvSeZl4uVxbBvive9hqpiIqHl3CEQfe7WlI/S1lbjsdoEBnRA==" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-resource/1.8.2/angular-resource.min.js" integrity="sha512-heHqDjSgQ/iDnrNQqj9WFFYIS9nKYnWwb3VndZOvW1riVCWN9gsr98JEptFqmBl8Ru+3ubuGcHCYe2RJnA2PnA==" crossorigin="anonymous"></script>
-
+@Html.Partial("Translations")
 <script>
-    var app = angular.module('myApp', ['ngCookies','ngResource']);    
+
+    var app = angular.module('myApp', ['ngCookies', 'ngResource']);
     var lang = 'english';
     //Translation service
     app.service('translationService', function ($resource) {
         this.getTranslation = function ($scope, language) {
-            var languageFilePath = '/Content/Locales/locale-' + language + '.json';
-            $resource(languageFilePath).get(function (data) {
-                $scope.translation = data;
-            });
+            if (language == "serbian")
+                $scope.translation = srb;
+            else if (language == "english")
+                $scope.translation = eng;
+
         };
     });
 
-    app.controller('myCtrl', ['$scope','$resource', '$cookies', 'translationService', function ($scope,$resource, $cookies, translationService) {
+    app.controller('myCtrl', ['$scope', '$resource', '$cookies', 'translationService', function ($scope, $resource, $cookies, translationService) {
         //if no language cookie exists, make it
-        if ($cookies.get('lang') == undefined) 
+        if ($cookies.get('lang') == undefined)
             $cookies.put("lang", "english", ["/"]);
         //initial lang setup
         lang = $cookies.get('lang');
@@ -94,14 +96,14 @@
         $scope.btnReserve = function () {
             document.location.href = "/Projections/AllProjections";
         }
-        $scope.chooseLanguage =  function ( language) {
+        $scope.chooseLanguage = function (language) {
             $cookies.put("lang", language, ["/"]);
             lang = language;
             translationService.getTranslation($scope, lang);
         }
-        
+
     }]);
-   
+
 </script>
 
 @RenderSection("scripts", required: false)
