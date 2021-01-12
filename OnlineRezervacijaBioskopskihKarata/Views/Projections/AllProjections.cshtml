@@ -11,11 +11,14 @@
 @foreach (var item in Model)
 {
     <div class="card mb-4">
-        <div class="row no-gutters">
-            <div class="col-md-4">
-                <img src="~/Content/movieWallpapers/mov3.jpg" class="card-img" />
+        <div class="row no-gutters" >
+            <div class="col-lg-4">
+                @if(item.Image != null) { 
+                <img src="data:image/jpg;base64,@(Convert.ToBase64String(item.Image))" class="card-img" style="min-height:256px;" />
+                }
+
             </div>
-            <div class="col-md-8">
+            <div class="col-md-8" >
                 <div class="card-body">
                     <h3 class="card-title">@Html.DisplayFor(modelItem => item.Name)</h3>
                     <hr />

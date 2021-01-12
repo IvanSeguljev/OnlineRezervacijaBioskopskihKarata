@@ -106,10 +106,12 @@ namespace OnlineRezervacijaBioskopskihKarata.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,StartTime,EndTime,Date,TicketCost")] Projection projection)
+        public ActionResult Create([Bind(Include = "Id,Name,StartTime,EndTime,Date,TicketCost")] Projection projection, HttpPostedFileBase file)
         {
             if (ModelState.IsValid)
             {
+                projection.Image = new byte[file.ContentLength];
+                file.InputStream.Read(projection.Image, 0, file.ContentLength);
                 db.Projections.Add(projection);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -130,6 +132,7 @@ namespace OnlineRezervacijaBioskopskihKarata.Controllers
             {
                 return HttpNotFound();
             }
+            
             return View(projection);
         }
 
@@ -138,10 +141,15 @@ namespace OnlineRezervacijaBioskopskihKarata.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,StartTime,EndTime,Date,TicketCost")] Projection projection)
+        public ActionResult Edit([Bind(Include = "Id,Name,StartTime,EndTime,Date,TicketCost")] Projection projection, HttpPostedFileBase file)
         {
             if (ModelState.IsValid)
             {
+                if (file != null)
+                {
+                    projection.Image = new byte[file.ContentLength];
+                    file.InputStream.Read(projection.Image, 0, file.ContentLength);
+                }
                 db.Entry(projection).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
