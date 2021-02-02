@@ -8,21 +8,21 @@
 <h2>{{translation.create_new_projection}}</h2>
 
 
-@using (Html.BeginForm("Create","Projections",FormMethod.Post,new { enctype = "multipart/form-data" }))
+@using (Html.BeginForm("Create", "Projections", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
-        
+
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    <div class="form-group">
-        {{translation.projection_name}}
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+        <div class="form-group">
+            {{translation.projection_name}}
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
         </div>
-    </div>
 
         <div class="form-group">
             {{translation.start_time}}
@@ -33,7 +33,7 @@
         </div>
 
         <div class="form-group">
-           {{translation.end_time}}
+            {{translation.end_time}}
             <div class="col-md-10">
                 @Html.EditorFor(model => model.EndTime, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.EndTime, "", new { @class = "text-danger" })
@@ -43,7 +43,7 @@
         <div class="form-group">
             {{translation.projection_date}}
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "form-control", @id = "datepicker", @autocomplete="off" } })
                 @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -58,7 +58,7 @@
         <div class="form-group">
             {{translation.image}}
             <div class="col-md-10">
-                <input type="file" name="file" accept="image/*" required=""/>
+                <input type="file" name="file" accept="image/*" required="" />
             </div>
         </div>
 
@@ -76,5 +76,11 @@
 </div>
 
 @section Scripts {
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $(function () {
+            $("#datepicker").datepicker({ dateFormat: 'dd.mm.yy.' });
+        });
+    </script>
 }

@@ -213,10 +213,13 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\comfort.jpg" />
     <Content Include="Content\engFlag.jpg" />
+    <Content Include="Content\fast.jpg" />
     <Content Include="Content\movieWallpapers\mov1.jpg" />
     <Content Include="Content\movieWallpapers\mov2.jpg" />
     <Content Include="Content\movieWallpapers\mov3.jpg" />
+    <Content Include="Content\padlock.jpg" />
     <Content Include="Content\seat-clicked.jpg" />
     <Content Include="Content\seat-taken.jpg" />
     <Content Include="Content\seat.jpeg" />
