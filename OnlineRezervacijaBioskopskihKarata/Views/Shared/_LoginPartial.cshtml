@@ -5,18 +5,19 @@
     {
     @Html.AntiForgeryToken()
 
-   <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-            @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", @class="nav-link" })
-        </li>
-        <li class="nav-item"><a href="javascript:document.getElementById('logoutForm').submit()" class="nav-link">Log off</a></li>
-    </ul>
+<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+    <li class="nav-item">
+        @Html.ActionLink(User.Identity.GetUserName(), "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", @class = "nav-link" })
+    </li>
+    <li class="nav-item"><a href="javascript:document.getElementById('logoutForm').submit()" class="nav-link">{{translation.logout}}</a></li>
+    
+</ul>
     }
 }
 else
 {
 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-    <li class="nav-item">@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink",  @class="nav-link"})</li>
-    <li class="nav-item">@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink",@class="nav-link"})</li>
+    
+    <li class="nav-item">@Html.ActionLink("{{translation.login}}", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink",@class="nav-link"})</li>
 </ul>
 }

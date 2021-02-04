@@ -19,6 +19,11 @@ namespace OnlineRezervacijaBioskopskihKarata.Models
         public int TicketCost { get; set; }
         public virtual ICollection<Reservation> Reservations { get; set; }
 
+        public string GetTicketsSold()
+        {
+            return Reservations.Count.ToString();
+        }
+
         public string formatReservedSeats()
         {
             StringBuilder sb = new StringBuilder();

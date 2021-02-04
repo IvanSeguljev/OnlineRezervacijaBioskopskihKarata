@@ -10,6 +10,7 @@ using OnlineRezervacijaBioskopskihKarata.Models;
 
 namespace OnlineRezervacijaBioskopskihKarata.Controllers
 {
+    [Authorize]
     public class ProjectionsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -19,12 +20,12 @@ namespace OnlineRezervacijaBioskopskihKarata.Controllers
         {
             return View(db.Projections.ToList());
         }
-
+        [AllowAnonymous]
         public ActionResult AllProjections()
         {
             return View(db.Projections.ToList());
         }
-
+        [AllowAnonymous]
         public ActionResult BuyTickets(int? id)
         {
             if (id == null)
@@ -39,6 +40,7 @@ namespace OnlineRezervacijaBioskopskihKarata.Controllers
             return View(db.Projections.Include(x => x.Reservations).FirstOrDefault(x=>x.Id==id));
         }
         [HttpPost]
+        [AllowAnonymous]
         public ActionResult BuyTickets(int id, string selectedSeats)
         {
             Projection projection = db.Projections.Find(id);
@@ -61,12 +63,12 @@ namespace OnlineRezervacijaBioskopskihKarata.Controllers
             db.SaveChanges();
             return RedirectToAction("ViewReservations",new {transactionId = orderId });
         }
-
+        [AllowAnonymous]
         public ActionResult FindTickets()
         {
             return View();
         }
-
+        [AllowAnonymous]
         public ActionResult ViewReservations(string transactionId)
         {
             ViewTicketsViewModel model = new ViewTicketsViewModel();
