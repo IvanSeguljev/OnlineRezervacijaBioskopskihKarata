@@ -85,7 +85,7 @@
 
         };
     });
-
+    
     app.controller('myCtrl', ['$scope', '$resource', '$cookies', 'translationService', function ($scope, $resource, $cookies, translationService) {
         //if no language cookie exists, make it
         if ($cookies.get('lang') == undefined)
@@ -104,6 +104,8 @@
             lang = language;
             translationService.getTranslation($scope, lang);
         }
+
+        
 
     }]);
 

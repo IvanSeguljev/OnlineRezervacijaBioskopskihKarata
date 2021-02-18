@@ -147,12 +147,18 @@ namespace OnlineRezervacijaBioskopskihKarata.Controllers
         {
             if (ModelState.IsValid)
             {
+                Projection fromdb = db.Projections.FirstOrDefault(x => x.Id == projection.Id);
                 if (file != null)
                 {
-                    projection.Image = new byte[file.ContentLength];
-                    file.InputStream.Read(projection.Image, 0, file.ContentLength);
+                    fromdb.Image = new byte[file.ContentLength];
+                    file.InputStream.Read(fromdb.Image, 0, file.ContentLength);
                 }
-                db.Entry(projection).State = EntityState.Modified;
+
+                fromdb.Name = projection.Name;
+                fromdb.StartTime = projection.StartTime;
+                fromdb.EndTime = projection.EndTime;
+                fromdb.Date = projection.Date;
+                fromdb.TicketCost = projection.TicketCost;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
